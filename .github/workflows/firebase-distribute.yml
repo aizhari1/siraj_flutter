@@ -1,6 +1,5 @@
 name: Build & Distribute SIRAJ APK
 
-# يشتغل تلقائي مع كل push على main، أو يدويًا من تبويب Actions في GitHub
 on:
   push:
     branches: [main, master]
@@ -19,7 +18,7 @@ jobs:
           flutter-version: '3.24.0'
           channel: 'stable'
 
-     - name: Generate Android/iOS project files
+      - name: Generate Android/iOS project files
         run: flutter create --platforms=android --org com.siraj .
 
       - name: Install dependencies
@@ -28,8 +27,6 @@ jobs:
       - name: Build APK (release)
         run: flutter build apk --release --dart-define=API_BASE_URL=${{ secrets.API_BASE_URL }}
 
-      # يرفع الـ APK على Firebase App Distribution مجانًا لأي عدد "tester" تحددهم
-      # التوثيق: https://firebase.google.com/docs/app-distribution/android/distribute-cli
       - name: Upload to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
@@ -37,4 +34,4 @@ jobs:
           serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           groups: testers
           file: build/app/outputs/flutter-apk/app-release.apk
-          releaseNotes: "بيلد تلقائي من GitHub Actions - ${{ github.sha }}"
+          releaseNotes: "Auto build from GitHub Actions"
