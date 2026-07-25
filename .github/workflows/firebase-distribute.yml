@@ -3,7 +3,7 @@ name: Build & Distribute SIRAJ APK
 # يشتغل تلقائي مع كل push على main، أو يدويًا من تبويب Actions في GitHub
 on:
   push:
-    branches: [main]
+    branches: [main, master]
   workflow_dispatch:
 
 jobs:
