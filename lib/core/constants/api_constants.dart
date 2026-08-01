@@ -6,9 +6,9 @@ class ApiConstants {
   ApiConstants._();
 
   static const String baseUrl = String.fromEnvironment(
-    'API_BASE_URL',
-    defaultValue: 'https://lms-platform1.pxxl.run',
-  );
+  'API_BASE_URL',
+  defaultValue: 'https://lms-platform1-main-de33768.kuberns.cloud',
+);
 
   static const String apiPrefix = '/api/v1';
 
